@@ -3,8 +3,10 @@ package com.giovannymassuia.paymentservice.streams;
 import com.giovannymassuia.kafka.order.Order;
 import com.giovannymassuia.kafka.payment.Payment;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Processor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 @Service
+@EnableBinding(Processor.class)
+@Profile("!test")
 @Slf4j
 public class PaymentStream {
 

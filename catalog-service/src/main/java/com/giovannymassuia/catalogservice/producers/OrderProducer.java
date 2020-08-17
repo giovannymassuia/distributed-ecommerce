@@ -3,11 +3,13 @@ package com.giovannymassuia.catalogservice.producers;
 import com.giovannymassuia.kafka.order.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Profile("!test")
 public class OrderProducer {
 
     @Value("${kafka.topics.order}")

@@ -3,6 +3,7 @@ package com.giovannymassuia.catalogservice.controllers;
 import com.giovannymassuia.catalogservice.producers.OrderProducer;
 import com.giovannymassuia.kafka.order.Order;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("cart")
 @RequiredArgsConstructor
+@Profile("!test")
 public class CartController {
     
     private final OrderProducer orderProducer;

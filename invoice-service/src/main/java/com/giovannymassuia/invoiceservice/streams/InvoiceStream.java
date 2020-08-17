@@ -3,8 +3,10 @@ package com.giovannymassuia.invoiceservice.streams;
 import com.giovannymassuia.kafka.invoice.Invoice;
 import com.giovannymassuia.kafka.payment.Payment;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Processor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ import java.util.UUID;
 
 @Service
 @Slf4j
+@Profile("!test")
+@EnableBinding(Processor.class)
 public class InvoiceStream {
 
     @StreamListener(Processor.INPUT)
