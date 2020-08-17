@@ -6,12 +6,7 @@ jobs:
     docker:
       - image: circleci/openjdk:11-buster-node-browsers-legacy
     steps:
-      - run: 
-          name: catalog-service
-          command: |
-            ls
-            cd catalog-service
-            mvn clean package
+      - run: cd catalog-service && mvn clean package
             
 # Orchestrate our job run sequence
 workflows:
