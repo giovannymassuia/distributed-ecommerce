@@ -8,6 +8,9 @@ jobs:
     steps:
       - checkout
       - run: java -version
+      - run: ls
+      - run: cd catalog-service
+      - run: ls
 
 # Orchestrate our job run sequence
 workflows:
