@@ -6,11 +6,11 @@ orbs:
 workflows:
   maven_test:
     jobs:
-      - maven/test
+      - maven/test:
         name: catalog-service
         test_results_path: catalog-service/target/surefire-reports
         app_src_directory: catalog-service
-      - maven/test
+      - maven/test:
         name: payment-service
         test_results_path: payment-service/target/surefire-reports
         app_src_directory: payment-service
