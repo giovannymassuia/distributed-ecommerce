@@ -10,8 +10,6 @@ jobs:
           name: catalog-service
           command: |
             ls
-            cd catalog-service
-            mvn clean package
       - run:
           name: Save test results
           command: |
