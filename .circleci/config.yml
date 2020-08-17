@@ -9,6 +9,7 @@ jobs:
       - run: 
           name: catalog-service
           command: |
+            ls
             cd catalog-service
             mvn clean package
       - run:
