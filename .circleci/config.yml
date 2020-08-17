@@ -10,6 +10,11 @@ jobs:
           name: catalog-service
           command: |
             ls
+            cd catalog-service
+            mvn clean package -Dspring.profiles.active=test
+      - run: 
+          name: save tests
+          command: |
             mkdir -p ~/test-results/junit/
             find . -type f -regex "catalog-service/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
       - store_test_results:
