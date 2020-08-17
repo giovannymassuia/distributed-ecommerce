@@ -7,10 +7,17 @@ jobs:
       - image: circleci/openjdk:11-buster-node-browsers-legacy
     steps:
       - checkout
-      - run: java -version
-      - run: ls
-      - run: cd catalog-service
-      - run: ls
+      - run: 
+          name: java version
+          command: |
+            java -version
+            ls
+            cd catalog-service
+            ls
+      - run: 
+          name: java version
+          command: |
+            ls
 
 # Orchestrate our job run sequence
 workflows:
