@@ -8,17 +8,16 @@ jobs:
     steps:
       - checkout
       - run: 
-          name: java version
+          name: catalog-service
           command: |
-            java -version
-            ls
             cd catalog-service
-            ls
+            mvn clean package
       - run: 
-          name: java version
+          name: payment-service
           command: |
-            ls
-
+            cd payment-service
+            mvn clean package
+            
 # Orchestrate our job run sequence
 workflows:
   build_and_test:
