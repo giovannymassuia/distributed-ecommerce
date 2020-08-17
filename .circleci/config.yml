@@ -1,12 +1,16 @@
 version: 2.1
 
-orbs:
-  maven: circleci/maven@0.0.12
+# Define the jobs we want to run for this project
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:11-buster-node-browsers-legacy
+    steps:
+      - checkout
+      - run: java -version
 
+# Orchestrate our job run sequence
 workflows:
-  maven_test:
+  build_and_test:
     jobs:
-      - maven/test:
-          name: catalog-service
-          test_results_path: catalog-service/target/surefire-reports
-          app_src_directory: catalog-service
+      - build
