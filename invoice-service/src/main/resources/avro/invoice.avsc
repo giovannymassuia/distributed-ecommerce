@@ -1,0 +1,28 @@
+{
+    "type": "record",
+    "namespace": "com.giovannymassuia.kafka.invoice",
+    "name": "Invoice",
+    "fields": [
+        {
+            "name": "order_id",
+            "type": "string"
+        },
+        {
+            "name": "paid",
+            "type": "boolean"
+        },
+        {
+            "name": "invoiceNumber",
+            "type": "string"
+        },
+        {
+            "name": "createdAt",
+            "type": "long",
+            "logicalType": "timestamp-millis"
+        },
+        {
+             "name": "chainCheck",
+             "type": "string"
+        }
+    ]
+}

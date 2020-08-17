@@ -1,0 +1,17 @@
+server:
+  port: 8880
+
+spring:
+  profiles:
+    active: @project.build.type@
+  application:
+    name: catalog-service
+
+info:
+  app:
+    name: @project.name@
+    description: @project.description@
+    version: @project.version@
+    encoding: @project.build.sourceEncoding@
+    java:
+      version: @java.version@

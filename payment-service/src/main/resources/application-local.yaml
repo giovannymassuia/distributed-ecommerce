@@ -1,0 +1,42 @@
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:9999
+        
+  cloud:
+    stream:
+      default:
+        producer:
+          useNativeEncoding: true
+        consumer:
+          useNativeEncoding: true
+      bindings:
+        input:
+          destination: distributed-ecommerce.local.order
+          content-type: application/*+avro
+          group: payment-service
+        output:
+          destination: distributed-ecommerce.local.payment
+          content-type: application/*+avro
+      kafka:
+        binder:
+          brokers: localhost:9092
+          producer-properties:
+            key.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+            value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+            schema.registry.url: http://localhost:8081
+          consumer-properties:
+            key.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+            value.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+            schema.registry.url: http://localhost:8081
+            specific.avro.reader: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
