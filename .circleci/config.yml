@@ -7,6 +7,6 @@ workflows:
   maven_test:
     jobs:
       - maven/test:
-        name: catalog-service
-        test_results_path: catalog-service/target/surefire-reports
-        app_src_directory: catalog-service
+          name: catalog-service
+          test_results_path: catalog-service/target/surefire-reports
+          app_src_directory: catalog-service
