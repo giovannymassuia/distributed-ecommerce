@@ -23,11 +23,14 @@ public class CartJob {
     @Scheduled(fixedDelay = 2000)
     public void purchase() {
         log.info("Sending message " + LocalDateTime.now());
+
+        LocalDateTime now = LocalDateTime.now();
         
         Order order = Order.newBuilder()
                 .setOrderId(UUID.randomUUID().toString())
-                .setCreatedAt(LocalDateTime.now().atOffset(ZoneOffset.UTC).toInstant().toEpochMilli())
+                .setCreatedAt(now.atOffset(ZoneOffset.UTC).toInstant().toEpochMilli())
                 .setChainCheck("{cs}")
+                .setCreatedAtFormatted(now.toString())
                 .build();
 
         orderProducer.produce(order);

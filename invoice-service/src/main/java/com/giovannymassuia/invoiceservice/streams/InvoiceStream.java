@@ -25,11 +25,13 @@ public class InvoiceStream {
     public Invoice consumeEmployeeDetails(Payment payment) {
         log.info("Let's process payment details: {}", payment);
 
+        LocalDateTime now = LocalDateTime.now();
+
         return Invoice.newBuilder()
                 .setOrderId(payment.getOrderId())
                 .setInvoiceNumber(UUID.randomUUID().toString())
-                .setCreatedAt(LocalDateTime.now()
-                        .atOffset(ZoneOffset.UTC).toInstant().toEpochMilli())
+                .setCreatedAtFormatted(now.toString())
+                .setCreatedAt(now.atOffset(ZoneOffset.UTC).toInstant().toEpochMilli())
                 .setPaid(payment.getPaid())
                 .setChainCheck(payment.getChainCheck().concat("{is}"))
                 .build();

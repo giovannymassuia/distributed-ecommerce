@@ -2,6 +2,7 @@
     "type": "record",
     "namespace": "com.giovannymassuia.kafka.invoice",
     "name": "Invoice",
+    "version": "2",
     "fields": [
         {
             "name": "order_id",
@@ -23,6 +24,11 @@
         {
              "name": "chainCheck",
              "type": "string"
+        },
+        {
+            "name": "createdAtFormatted",
+            "type": ["null", "string"],
+            "default": null
         }
     ]
 }

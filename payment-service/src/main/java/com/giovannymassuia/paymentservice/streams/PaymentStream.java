@@ -23,11 +23,13 @@ public class PaymentStream {
     @SendTo(Processor.OUTPUT)
     public Payment consumeEmployeeDetails(Order order) {
         log.info("Let's process order details: {}", order);
+
+        LocalDateTime now = LocalDateTime.now();
         
         return Payment.newBuilder()
                 .setOrderId(order.getOrderId())
-                .setCreatedAt(LocalDateTime.now()
-                        .atOffset(ZoneOffset.UTC).toInstant().toEpochMilli())
+                .setCreatedAtFormatted(now.toString())
+                .setCreatedAt(now.atOffset(ZoneOffset.UTC).toInstant().toEpochMilli())
                 .setPaid(true)
                 .setChainCheck(order.getChainCheck().concat("{ps}"))
                 .build();
