@@ -9,13 +9,16 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - m2-{{ checksum "pom.xml" }}-{{ checksum "catalog-service/pom.xml" }}
-            - m2- # used if checksum fails
+            - m2-catalog-service-{{ checksum "pom.xml" }}-{{ checksum "catalog-service/pom.xml" }}
       - run: 
           name: catalog-service
           command: |
             cd catalog-service
             mvn clean package
+      - save_cache:
+          key: m2-catalog-service-{{ checksum "pom.xml" }}-{{ checksum "catalog-service/pom.xml" }}
+          paths:
+            - ~/.m2
       - run:
           name: Save test results
           command: |
@@ -34,13 +37,16 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - m2-{{ checksum "pom.xml" }}-{{ checksum "payment-service/pom.xml" }}
-            - m2- # used if checksum fails
+            - m2-payment-service-{{ checksum "pom.xml" }}-{{ checksum "payment-service/pom.xml" }}
       - run:
           name: payment-service
           command: |
             cd payment-service
             mvn clean package
+      - save_cache:
+          key: m2-payment-service-{{ checksum "pom.xml" }}-{{ checksum "payment-service/pom.xml" }}
+          paths:
+            - ~/.m2
       - run:
           name: Save test results
           command: |
@@ -59,13 +65,16 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - m2-{{ checksum "pom.xml" }}-{{ checksum "invoice-service/pom.xml" }}
-            - m2- # used if checksum fails
+            - m2-invoice-service-{{ checksum "pom.xml" }}-{{ checksum "invoice-service/pom.xml" }}
       - run:
           name: invoice-service
           command: |
             cd invoice-service
             mvn clean package
+      - save_cache:
+          key: m2-invoice-service-{{ checksum "pom.xml" }}-{{ checksum "invoice-service/pom.xml" }}
+          paths:
+            - ~/.m2
       - run:
           name: Save test results
           command: |
@@ -77,6 +86,31 @@ jobs:
       - store_artifacts:
           path: ~/test-results/junit
           
+#  Inventory-Service:
+#    docker:
+#      - image: circleci/openjdk:11-buster-node-browsers-legacy
+#    steps:
+#      - checkout
+#      - restore_cache:
+#          keys:
+#            - m2-{{ checksum "pom.xml" }}-{{ checksum "inventory-service/pom.xml" }}
+#            - m2 # used if checksum fails
+#      - run:
+#          name: inventory-service
+#          command: |
+#            cd inventory-service
+#            mvn clean package
+#      - run:
+#          name: Save test results
+#          command: |
+#            mkdir -p ~/test-results/junit/
+#            find ./inventory-service -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+#          when: always
+#      - store_test_results:
+#          path: ~/test-results
+#      - store_artifacts:
+#          path: ~/test-results/junit
+            
 # Orchestrate our job run sequence
 workflows:
   build_and_test:
@@ -84,3 +118,4 @@ workflows:
       - Catalog-Service
       - Payment-Service
       - Invoice-Service
+#      - Inventory-Service
