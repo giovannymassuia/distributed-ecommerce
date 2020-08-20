@@ -7,6 +7,8 @@ jobs:
       - image: circleci/openjdk:11-buster-node-browsers-legacy
     steps:
       - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
       - restore_cache:
           keys:
             - m2-catalog-service-{{ checksum "pom.xml" }}-{{ checksum "catalog-service/pom.xml" }}
