@@ -10,9 +10,8 @@ jobs:
       - run: 
           name: catalog-service
           command: |
-            ls
             cd catalog-service
-            mvn clean package -Dspring.profiles.active=test
+            mvn clean package
       - run:
           name: Save test results
           command: |
@@ -32,9 +31,8 @@ jobs:
       - run:
           name: payment-service
           command: |
-            ls
             cd payment-service
-            mvn clean package -Dspring.profiles.active=test
+            mvn clean package
       - run:
           name: Save test results
           command: |
@@ -54,9 +52,8 @@ jobs:
       - run:
           name: invoice-service
           command: |
-            ls
             cd invoice-service
-            mvn clean package -Dspring.profiles.active=test
+            mvn clean package
       - run:
           name: Save test results
           command: |

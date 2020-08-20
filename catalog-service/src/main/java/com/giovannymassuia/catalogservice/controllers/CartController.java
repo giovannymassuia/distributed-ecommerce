@@ -17,7 +17,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("cart")
 @RequiredArgsConstructor
-@Profile("!test")
 public class CartController {
     
     private final OrderProducer orderProducer;
