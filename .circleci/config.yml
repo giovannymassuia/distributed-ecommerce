@@ -7,6 +7,10 @@ jobs:
       - image: circleci/openjdk:11-buster-node-browsers-legacy
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - m2-{{ checksum "pom.xml" }}-{{ checksum "catalog-service/pom.xml" }}
+            - m2- # used if checksum fails
       - run: 
           name: catalog-service
           command: |
@@ -28,6 +32,10 @@ jobs:
       - image: circleci/openjdk:11-buster-node-browsers-legacy
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - m2-{{ checksum "pom.xml" }}-{{ checksum "payment-service/pom.xml" }}
+            - m2- # used if checksum fails
       - run:
           name: payment-service
           command: |
@@ -49,6 +57,10 @@ jobs:
       - image: circleci/openjdk:11-buster-node-browsers-legacy
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - m2-{{ checksum "pom.xml" }}-{{ checksum "invoice-service/pom.xml" }}
+            - m2- # used if checksum fails
       - run:
           name: invoice-service
           command: |
@@ -64,7 +76,7 @@ jobs:
           path: ~/test-results
       - store_artifacts:
           path: ~/test-results/junit
-            
+          
 # Orchestrate our job run sequence
 workflows:
   build_and_test:
