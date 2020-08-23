@@ -4,18 +4,6 @@ spring:
       client:
         url: http://localhost:9999
   
-  datasource:
-    url: jdbc:h2:mem:localdb
-    
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: true
-    generate-ddl: true
-
   kafka:
     bootstrap-servers: localhost:9092
     schema-registry-url: http://localhost:8081
@@ -31,4 +19,4 @@ management:
       
 kafka:
   topics:
-    order: distributed-ecommerce.local.order
+    order: local.distributed-ecommerce.order

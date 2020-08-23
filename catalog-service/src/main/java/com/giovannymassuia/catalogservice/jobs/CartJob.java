@@ -29,7 +29,6 @@ public class CartJob {
         Order order = Order.newBuilder()
                 .setOrderId(UUID.randomUUID().toString())
                 .setCreatedAt(now.atOffset(ZoneOffset.UTC).toInstant().toEpochMilli())
-                .setChainCheck("{cs}")
                 .setCreatedAtFormatted(now.toString())
                 .build();
 

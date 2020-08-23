@@ -1,6 +1,10 @@
 server:
   port: 8882
   
+grpc:
+  server:
+    port: 9992
+  
 spring:
   profiles:
     active: @project.build.type@

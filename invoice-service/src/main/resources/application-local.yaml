@@ -13,11 +13,11 @@ spring:
           useNativeEncoding: true
       bindings:
         input:
-          destination: distributed-ecommerce.local.payment
+          destination: local.distributed-ecommerce.payment
           content-type: application/*+avro
           group: invoice-service
         output:
-          destination: distributed-ecommerce.local.invoice
+          destination: local.distributed-ecommerce.invoice
           content-type: application/*+avro
       kafka:
         binder:

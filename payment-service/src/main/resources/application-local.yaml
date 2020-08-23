@@ -13,11 +13,11 @@ spring:
           useNativeEncoding: true
       bindings:
         input:
-          destination: distributed-ecommerce.local.order
+          destination: local.distributed-ecommerce.order
           content-type: application/*+avro
           group: payment-service
         output:
-          destination: distributed-ecommerce.local.payment
+          destination: local.distributed-ecommerce.payment
           content-type: application/*+avro
       kafka:
         binder:
@@ -31,6 +31,14 @@ spring:
             value.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
             schema.registry.url: http://localhost:8081
             specific.avro.reader: true
+
+grpc:
+  client:
+    inventory-service:
+      address: static://localhost:9992
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext
 
 management:
   endpoints:

@@ -16,4 +16,18 @@
     <name>inventory-service</name>
     <description>Kafka Ecommerce - Inventory Service</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.giovannymassuia</groupId>
+            <artifactId>commons</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.devh</groupId>
+            <artifactId>grpc-server-spring-boot-starter</artifactId>
+            <version>${spring-boot-starter-grpc-server.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>

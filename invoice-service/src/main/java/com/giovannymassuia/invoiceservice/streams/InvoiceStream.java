@@ -23,17 +23,15 @@ public class InvoiceStream {
     @StreamListener(Processor.INPUT)
     @SendTo(Processor.OUTPUT)
     public Invoice consumeEmployeeDetails(Payment payment) {
-        log.info("Let's process payment details: {}", payment);
+        log.info("Processing payment message: {}", payment);
 
         LocalDateTime now = LocalDateTime.now();
 
         return Invoice.newBuilder()
                 .setOrderId(payment.getOrderId())
-                .setInvoiceNumber(UUID.randomUUID().toString())
+                .setInvoiceId(UUID.randomUUID().toString())
                 .setCreatedAtFormatted(now.toString())
                 .setCreatedAt(now.atOffset(ZoneOffset.UTC).toInstant().toEpochMilli())
-                .setPaid(payment.getPaid())
-                .setChainCheck(payment.getChainCheck().concat("{is}"))
                 .build();
     }
     

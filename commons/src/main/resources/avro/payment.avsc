@@ -1,29 +1,21 @@
 {
     "type": "record",
-    "namespace": "com.giovannymassuia.kafka.invoice",
-    "name": "Invoice",
-    "version": "2",
+    "namespace": "com.giovannymassuia.kafka.payment",
+    "name": "Payment",
+    "version": "1",
     "fields": [
         {
             "name": "order_id",
             "type": "string"
         },
         {
-            "name": "paid",
-            "type": "boolean"
-        },
-        {
-            "name": "invoiceNumber",
+            "name": "payment_id",
             "type": "string"
         },
         {
             "name": "createdAt",
             "type": "long",
             "logicalType": "timestamp-millis"
-        },
-        {
-             "name": "chainCheck",
-             "type": "string"
         },
         {
             "name": "createdAtFormatted",

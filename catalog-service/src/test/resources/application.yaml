@@ -4,4 +4,4 @@ spring:
 
 kafka:
   topics:
-    order: distributed-ecommerce.local.order
+    order: local.distributed-ecommerce.order

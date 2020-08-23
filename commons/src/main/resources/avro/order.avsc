@@ -2,7 +2,7 @@
     "type": "record",
     "namespace": "com.giovannymassuia.kafka.order",
     "name": "Order",
-    "version": "2",
+    "version": "1",
     "fields": [
         {
             "name": "order_id",
@@ -12,10 +12,6 @@
             "name": "createdAt",
             "type": "long",
             "logicalType": "timestamp-millis"
-        },
-        {
-             "name": "chainCheck",
-             "type": "string"
         },
         {
             "name": "createdAtFormatted",
