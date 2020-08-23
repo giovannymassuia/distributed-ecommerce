@@ -145,7 +145,7 @@ jobs:
 workflows:
   build_and_test:
     jobs:
-      - Build-Test
+      - All-Services
 #      - Catalog-Service
 #      - Payment-Service
 #      - Invoice-Service
