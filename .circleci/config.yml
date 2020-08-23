@@ -9,13 +9,13 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - m2-all-services-{{ checksum "pom.xml" }}
+            - m2-all-services-{{ checksum "pom.xml" }}-{{ checksum "catalog-service/pom.xml" }}-{{ checksum "payment-service/pom.xml" }}-{{ checksum "inventory-service/pom.xml" }}-{{ checksum "invoice-service/pom.xml" }}
       - run:
           name: package-all-services
           command: |
             mvn clean package
       - save_cache:
-          key: m2-all-services-{{ checksum "pom.xml" }}
+          key: m2-all-services-{{ checksum "pom.xml" }}-{{ checksum "catalog-service/pom.xml" }}-{{ checksum "payment-service/pom.xml" }}-{{ checksum "inventory-service/pom.xml" }}-{{ checksum "invoice-service/pom.xml" }}
           paths:
             - ~/.m2
       - run:
