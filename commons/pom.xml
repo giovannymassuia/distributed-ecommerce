@@ -4,12 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     
     <modelVersion>4.0.0</modelVersion>
-    
-    <parent>
-        <artifactId>distributed-ecommerce</artifactId>
-        <groupId>com.giovannymassuia</groupId>
-        <version>1.0</version>
-    </parent>
 
     <groupId>com.giovannymassuia</groupId>
     <artifactId>commons</artifactId>
@@ -17,8 +11,6 @@
     <name>commons</name>
     <description>Commons Classes</description>
 
-    <packaging>jar</packaging>
-    
     <dependencies>
         <dependency>
             <groupId>io.grpc</groupId>
@@ -37,6 +29,12 @@
             <artifactId>grpc-services</artifactId>
             <version>1.27.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>1.8.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -45,7 +43,7 @@
             <plugin>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro-maven-plugin</artifactId>
-                <version>${avro.version}</version>
+                <version>1.8.2</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>

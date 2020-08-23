@@ -1,0 +1,26 @@
+{
+    "type": "record",
+    "namespace": "com.giovannymassuia.kafka.invoice",
+    "name": "Invoice",
+    "version": "1",
+    "fields": [
+        {
+            "name": "order_id",
+            "type": "string"
+        },
+        {
+            "name": "invoice_id",
+            "type": "string"
+        },
+        {
+            "name": "createdAt",
+            "type": "long",
+            "logicalType": "timestamp-millis"
+        },
+        {
+            "name": "createdAtFormatted",
+            "type": ["null", "string"],
+            "default": null
+        }
+    ]
+}

@@ -2,123 +2,151 @@ version: 2.1
 
 # Define the jobs we want to run for this project
 jobs:
-  Catalog-Service:
+  All-Services:
     docker:
       - image: circleci/openjdk:11
     steps:
       - checkout
       - restore_cache:
           keys:
-            - m2-catalog-service-{{ checksum "pom.xml" }}-{{ checksum "catalog-service/pom.xml" }}
-      - run: 
+            - m2-all-services-{{ checksum "pom.xml" }}-{{ checksum "all-services/pom.xml" }}
+      - run:
           name: catalog-service
           command: |
-            cd catalog-service
             mvn clean package
       - save_cache:
-          key: m2-catalog-service-{{ checksum "pom.xml" }}-{{ checksum "catalog-service/pom.xml" }}
+          key: m2-all-services-{{ checksum "pom.xml" }}-{{ checksum "all-services/pom.xml" }}
           paths:
             - ~/.m2
       - run:
           name: Save test results
           command: |
             mkdir -p ~/test-results/junit/
-            find ./catalog-service -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
-          when: always
-      - store_test_results:
-          path: ~/test-results
-      - store_artifacts:
-          path: ~/test-results/junit
-
-  Payment-Service:
-    docker:
-      - image: circleci/openjdk:11
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - m2-payment-service-{{ checksum "pom.xml" }}-{{ checksum "payment-service/pom.xml" }}
-      - run:
-          name: payment-service
-          command: |
-            cd payment-service
-            mvn clean package
-      - save_cache:
-          key: m2-payment-service-{{ checksum "pom.xml" }}-{{ checksum "payment-service/pom.xml" }}
-          paths:
-            - ~/.m2
-      - run:
-          name: Save test results
-          command: |
-            mkdir -p ~/test-results/junit/
-            find ./payment-service -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
-          when: always
-      - store_test_results:
-          path: ~/test-results
-      - store_artifacts:
-          path: ~/test-results/junit
-          
-  Invoice-Service:
-    docker:
-      - image: circleci/openjdk:11
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - m2-invoice-service-{{ checksum "pom.xml" }}-{{ checksum "invoice-service/pom.xml" }}
-      - run:
-          name: invoice-service
-          command: |
-            cd invoice-service
-            mvn clean package
-      - save_cache:
-          key: m2-invoice-service-{{ checksum "pom.xml" }}-{{ checksum "invoice-service/pom.xml" }}
-          paths:
-            - ~/.m2
-      - run:
-          name: Save test results
-          command: |
-            mkdir -p ~/test-results/junit/
-            find ./invoice-service -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
-          when: always
-      - store_test_results:
-          path: ~/test-results
-      - store_artifacts:
-          path: ~/test-results/junit
-          
-  Inventory-Service:
-    docker:
-      - image: circleci/openjdk:11
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - m2-inventory-service-{{ checksum "pom.xml" }}-{{ checksum "inventory-service/pom.xml" }}
-      - run:
-          name: inventory-service
-          command: |
-            cd inventory-service
-            mvn clean package
-      - save_cache:
-          key: m2-inventory-service-{{ checksum "pom.xml" }}-{{ checksum "inventory-service/pom.xml" }}
-          paths:
-            - ~/.m2
-      - run:
-          name: Save test results
-          command: |
-            mkdir -p ~/test-results/junit/
-            find ./inventory-service -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
           when: always
       - store_test_results:
           path: ~/test-results
       - store_artifacts:
           path: ~/test-results/junit
             
+#  Catalog-Service:
+#    docker:
+#      - image: circleci/openjdk:11
+#    steps:
+#      - checkout
+#      - restore_cache:
+#          keys:
+#            - m2-catalog-service-{{ checksum "pom.xml" }}-{{ checksum "catalog-service/pom.xml" }}
+#      - run: 
+#          name: catalog-service
+#          command: |
+#            cd catalog-service
+#            mvn clean package
+#      - save_cache:
+#          key: m2-catalog-service-{{ checksum "pom.xml" }}-{{ checksum "catalog-service/pom.xml" }}
+#          paths:
+#            - ~/.m2
+#      - run:
+#          name: Save test results
+#          command: |
+#            mkdir -p ~/test-results/junit/
+#            find ./catalog-service -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+#          when: always
+#      - store_test_results:
+#          path: ~/test-results
+#      - store_artifacts:
+#          path: ~/test-results/junit
+
+#  Payment-Service:
+#    docker:
+#      - image: circleci/openjdk:11
+#    steps:
+#      - checkout
+#      - restore_cache:
+#          keys:
+#            - m2-payment-service-{{ checksum "pom.xml" }}-{{ checksum "payment-service/pom.xml" }}
+#      - run:
+#          name: payment-service
+#          command: |
+#            cd payment-service
+#            mvn clean package
+#      - save_cache:
+#          key: m2-payment-service-{{ checksum "pom.xml" }}-{{ checksum "payment-service/pom.xml" }}
+#          paths:
+#            - ~/.m2
+#      - run:
+#          name: Save test results
+#          command: |
+#            mkdir -p ~/test-results/junit/
+#            find ./payment-service -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+#          when: always
+#      - store_test_results:
+#          path: ~/test-results
+#      - store_artifacts:
+#          path: ~/test-results/junit
+#          
+#  Invoice-Service:
+#    docker:
+#      - image: circleci/openjdk:11
+#    steps:
+#      - checkout
+#      - restore_cache:
+#          keys:
+#            - m2-invoice-service-{{ checksum "pom.xml" }}-{{ checksum "invoice-service/pom.xml" }}
+#      - run:
+#          name: invoice-service
+#          command: |
+#            cd invoice-service
+#            mvn clean package
+#      - save_cache:
+#          key: m2-invoice-service-{{ checksum "pom.xml" }}-{{ checksum "invoice-service/pom.xml" }}
+#          paths:
+#            - ~/.m2
+#      - run:
+#          name: Save test results
+#          command: |
+#            mkdir -p ~/test-results/junit/
+#            find ./invoice-service -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+#          when: always
+#      - store_test_results:
+#          path: ~/test-results
+#      - store_artifacts:
+#          path: ~/test-results/junit
+#          
+#  Inventory-Service:
+#    docker:
+#      - image: circleci/openjdk:11
+#    steps:
+#      - checkout
+#      - restore_cache:
+#          keys:
+#            - m2-inventory-service-{{ checksum "pom.xml" }}-{{ checksum "inventory-service/pom.xml" }}
+#      - run:
+#          name: inventory-service
+#          command: |
+#            cd inventory-service
+#            mvn clean package
+#      - save_cache:
+#          key: m2-inventory-service-{{ checksum "pom.xml" }}-{{ checksum "inventory-service/pom.xml" }}
+#          paths:
+#            - ~/.m2
+#      - run:
+#          name: Save test results
+#          command: |
+#            mkdir -p ~/test-results/junit/
+#            find ./inventory-service -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+#          when: always
+#      - store_test_results:
+#          path: ~/test-results
+#      - store_artifacts:
+#          path: ~/test-results/junit
+            
 # Orchestrate our job run sequence
 workflows:
   build_and_test:
     jobs:
-      - Catalog-Service
-      - Payment-Service
-      - Invoice-Service
-      - Inventory-Service
+      - Build-Test
+#      - Catalog-Service
+#      - Payment-Service
+#      - Invoice-Service
+#      - Inventory-Service

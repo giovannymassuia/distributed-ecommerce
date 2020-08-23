@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package inventory;
+
+option java_package = "com.giovannymassuia.grpc.inventory";
+option java_multiple_files = true;
+
+message InventoryMessage {
+  string id = 1;
+  string product_id = 2;
+  int64 quantity_on_hand = 3;
+}
+
+message FindInventoryByProductRequest {
+  string product_id = 1;
+}
+
+message FindInventoryByProductResponse {
+  InventoryMessage inventory = 1;
+}
+
+service InventoryService {
+  rpc findByProduct(FindInventoryByProductRequest) returns (FindInventoryByProductResponse){};
+}

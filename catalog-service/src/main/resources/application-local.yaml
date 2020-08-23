@@ -16,7 +16,10 @@ management:
   endpoint:
     health:
       show-details: always
-      
+  metrics:
+    tags: 
+      application: ${spring.application.name}
+
 kafka:
   topics:
     order: local.distributed-ecommerce.order

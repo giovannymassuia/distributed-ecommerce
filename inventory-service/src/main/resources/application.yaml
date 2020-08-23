@@ -9,7 +9,7 @@ spring:
   profiles:
     active: @project.build.type@
   application:
-    name: inventory-service
+    name: @project.name@
 
 info:
   app:

@@ -24,3 +24,11 @@ management:
   endpoint:
     health:
       show-details: always
+  metrics:
+    tags:
+      application: ${spring.application.name}
+      
+# Logging
+#logging:
+#  file:
+#    name: /Users/giovannymassuia/ELK-Stack/logback/inventory-service.log

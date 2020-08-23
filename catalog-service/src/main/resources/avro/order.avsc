@@ -1,0 +1,22 @@
+{
+    "type": "record",
+    "namespace": "com.giovannymassuia.kafka.order",
+    "name": "Order",
+    "version": "1",
+    "fields": [
+        {
+            "name": "order_id",
+            "type": "string"
+        },
+        {
+            "name": "createdAt",
+            "type": "long",
+            "logicalType": "timestamp-millis"
+        },
+        {
+            "name": "createdAtFormatted",
+            "type": ["null", "string"],
+            "default": null
+        }
+    ]
+}
