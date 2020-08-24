@@ -84,7 +84,7 @@ jobs:
 #          path: ~/test-results
 #      - store_artifacts:
 #          path: ~/test-results/junit
-#          
+          
 #  Invoice-Service:
 #    docker:
 #      - image: circleci/openjdk:11
@@ -112,7 +112,7 @@ jobs:
 #          path: ~/test-results
 #      - store_artifacts:
 #          path: ~/test-results/junit
-#          
+    
 #  Inventory-Service:
 #    docker:
 #      - image: circleci/openjdk:11
